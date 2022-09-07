@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import { AngryButton } from './components/AngryButton';
+import { CounterButton } from './components/CounterButton';
+import { LightSwitchButton } from './components/LightSwitchButton';
+import { TextRepeaterButton } from './components/TextRepeaterButton';
 
 function App() {
+  const [lights, setLights] = useState(0);
+  const lightSwitch = () => {
+    lights === 0 ? setLights(1) : setLights(0);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={lights === 1 ? "App" : "App dark"}>
+      <h1>Fancy Buttons or Something!</h1>
+      <section>
+        <AngryButton />
+        <CounterButton />
+        <LightSwitchButton lights={lights} setLights={setLights} onClick={lightSwitch} />
+        <TextRepeaterButton />
+      </section>
     </div>
   );
 }
